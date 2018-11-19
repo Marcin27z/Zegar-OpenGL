@@ -86,7 +86,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cube.cpp" />
+    <ClCompile Include="group.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mesh.cpp" />
+    <ClCompile Include="node.cpp" />
     <ClCompile Include="shprogram.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -94,10 +98,10 @@
     <None Include="zegar.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="iipw.png" />
-    <Image Include="weiti.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="cube.h" />
+    <ClInclude Include="group.h" />
+    <ClInclude Include="mesh.h" />
+    <ClInclude Include="node.h" />
     <ClInclude Include="shprogram.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

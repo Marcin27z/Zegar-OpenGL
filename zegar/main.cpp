@@ -7,6 +7,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "cube.h"
+#include "group.h"
 
 using namespace std;
 
@@ -44,6 +46,10 @@ int main() {
 		// Build, compile and link shader program
 		ShaderProgram theProgram("zegar.vert", "zegar.frag");
 
+		Group group;
+		Cube cube(0.5f, 0.5f, 0.5f);
+		group.add(&cube);
+
 		// main event loop
 		while (!glfwWindowShouldClose(window)) {
 			// Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
@@ -54,7 +60,7 @@ int main() {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			theProgram.Use();
-
+			group.draw();
 			// Swap the screen buffers
 			glfwSwapBuffers(window);
 		}
