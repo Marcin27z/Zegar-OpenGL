@@ -14,10 +14,45 @@ using namespace std;
 
 const GLuint WIDTH = 800, HEIGHT = 800;
 
+static GLfloat cameraRotationAngleX = 0.0f;
+static GLfloat cameraRotationAngleY = 0.0f;
+static GLfloat zoom = -3.0f;
+
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode) {
 	cout << key << endl;
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
+	if (key == GLFW_KEY_RIGHT && action == GLFW_REPEAT)
+		cameraRotationAngleX += 1.0f;
+	if (key == GLFW_KEY_LEFT && action == GLFW_REPEAT)
+		cameraRotationAngleX -= 1.0f;
+	if (key == GLFW_KEY_UP && action == GLFW_REPEAT)
+		cameraRotationAngleY -= 1.0f;
+	if (key == GLFW_KEY_DOWN && action == GLFW_REPEAT)
+		cameraRotationAngleY += 1.0f;
+}
+
+double mouseOldPosX, mouseOldPosY;
+
+void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS) {
+		glfwGetCursorPos(window, &mouseOldPosX, &mouseOldPosY);
+	}
+}
+
+void cursorCallback(GLFWwindow* window, double mousePosX, double mousePosY) {
+	int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT);
+	if (state == GLFW_PRESS) {
+		cameraRotationAngleX += mousePosX - mouseOldPosX;
+		cameraRotationAngleY += mousePosY - mouseOldPosY;
+		mouseOldPosX = mousePosX;
+		mouseOldPosY = mousePosY;
+	}
+}
+
+void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
+	if (zoom + yoffset < -0.5f && zoom + yoffset > -20.0f)
+		zoom += yoffset;
 }
 
 int main() {
@@ -35,6 +70,9 @@ int main() {
 			throw exception("GLFW window not created");
 		glfwMakeContextCurrent(window);
 		glfwSetKeyCallback(window, keyCallback);
+		glfwSetMouseButtonCallback(window, mouseButtonCallback);
+		glfwSetCursorPosCallback(window, cursorCallback);
+		glfwSetScrollCallback(window, scrollCallback);
 
 		glewExperimental = GL_TRUE;
 		if (glewInit() != GLEW_OK)
@@ -58,6 +96,19 @@ int main() {
 			// Clear the colorbuffer
 			glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			glm::mat4 viewX, viewY, projection, transform, view;
+			projection = glm::perspective(glm::radians(45.0f), GLfloat(WIDTH) / GLfloat(HEIGHT), 0.1f, 100.0f);
+			viewX = glm::rotate(viewX, -glm::radians(cameraRotationAngleX), glm::vec3(0.0, 1.0, 0.0));
+			viewY = glm::rotate(viewY, -glm::radians(cameraRotationAngleY), glm::vec3(1.0, 0.0, 0.0));
+			GLuint projectionLoc = glGetUniformLocation(theProgram.get_programID(), "projection");
+			GLuint viewLoc = glGetUniformLocation(theProgram.get_programID(), "view");
+			GLuint transformLoc = glGetUniformLocation(theProgram.get_programID(), "transform");
+			transform = viewX * viewY;
+			view = glm::translate(view, glm::vec3(0.0f, 0.0f, zoom));
+			glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+			glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 
 			theProgram.Use();
 			group.draw();

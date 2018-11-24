@@ -16,7 +16,7 @@ void Mesh::draw() {
 	auto verticesIterator = vertices.begin();
 	auto colorsIterator = colors.begin();
 	GLfloat* tempVertices = new GLfloat[vertices.size() * 3 + colors.size() * 3];
-	for (int i = 0; i < vertices.size(); i++) {
+	for (auto i = 0; i < vertices.size(); i++) {
 		tempVertices[i * 6] = (*verticesIterator).x;
 		tempVertices[i * 6 + 1] = (*verticesIterator).y;
 		tempVertices[i * 6 + 2] = (*verticesIterator).z;
