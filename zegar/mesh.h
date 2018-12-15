@@ -17,6 +17,7 @@ protected:
 	std::vector<glm::vec4> vertices;
 	std::vector<glm::vec3> colors;
 	std::vector<glm::vec2> textures; //to be used later
+	std::vector<glm::vec4> normals; //to be used later
 	std::vector<GLuint> indices;
 	GLuint texture; //to be used later
 public:

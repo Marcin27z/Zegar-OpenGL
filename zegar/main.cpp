@@ -9,6 +9,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "cube.h"
 #include "group.h"
+#include "ring.h"
 
 using namespace std;
 
@@ -86,7 +87,8 @@ int main() {
 
 		Group group;
 		Cube cube(0.5f, 0.5f, 0.5f);
-		group.add(&cube);
+		Ring ring(1.0f, 0.75f, 0.3f);
+		group.addAll(&cube, &ring);
 
 		// main event loop
 		while (!glfwWindowShouldClose(window)) {
