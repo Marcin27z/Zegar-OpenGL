@@ -1,9 +1,6 @@
 #include "node.h"
 
-Node::Node() {
-	positionX = 0.0f;
-	positionY = 0.0f;
-	positionZ = 0.0f;
+Node::Node(): positionX(0), positionY(0.0f), positionZ(0.0f), angleX(0.0f), angleY(0.0f), angleZ(0.0f) {
 }
 
 Node::~Node() {

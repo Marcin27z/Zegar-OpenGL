@@ -17,6 +17,9 @@ Cube::Cube(float width, float height, float depth) {
 	this->depth = depth;
 }
 
+Cube::Cube() {
+}
+
 Cube::~Cube() {
 
 }
@@ -47,4 +50,9 @@ void Cube::genIndices() {
 		2, 3, 1,
 		2, 3, 6
 	};
+}
+
+Cube& Cube::operator=(Cube other) {
+	assign(other);
+	return *this;
 }

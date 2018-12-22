@@ -10,6 +10,7 @@
 #include "cube.h"
 #include "group.h"
 #include "ring.h"
+#include "cog.h"
 
 using namespace std;
 
@@ -86,12 +87,25 @@ int main() {
 		ShaderProgram theProgram("zegar.vert", "zegar.frag");
 
 		Group group;
-		Cube cube(0.5f, 0.5f, 0.5f);
-		Ring ring(1.0f, 0.75f, 0.3f);
-		group.addAll(&cube, &ring);
+		Cog cog(36, 1.0f);
+		Cog cog2(12, 1.0f);
+		Cog cog3(24, 1.0f);
+		cog.setAngularSpeed(20.0f);
+		cog2.synchronizeSpeed(cog);
+		cog3.synchronizeSpeed(cog);
+		cog2.rotate(0.0f, 15.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+		cog3.rotate(0.0f, 7.5f, 0.0f, 0.0f, 0.0f, 0.0f);
+		cog2.move(cog.getRadius() + cog2.getRadius() + 0.1f, 0.0f, 0.0f);
+		cog3.move(0.0f, 0.0f, cog.getRadius() + cog3.getRadius() + 0.1f);
 
 		// main event loop
 		while (!glfwWindowShouldClose(window)) {
+
+			static float deltaTime = 0.0f, lastFrame = 0.0f;
+			float currentFrame = glfwGetTime();
+			deltaTime = currentFrame - lastFrame;
+			lastFrame = currentFrame;
+
 			// Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
 			glfwPollEvents();
 
@@ -113,7 +127,9 @@ int main() {
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 
 			theProgram.Use();
-			group.draw();
+			cog.draw(deltaTime);
+			cog2.draw(deltaTime);
+			cog3.draw(deltaTime);
 			// Swap the screen buffers
 			glfwSwapBuffers(window);
 		}

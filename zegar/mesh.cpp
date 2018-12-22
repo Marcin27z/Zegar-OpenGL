@@ -74,6 +74,13 @@ void Mesh::setColor(float r, float g, float b) {
 }
 
 void Mesh::scale(float xScale, float yScale, float zScale) {
+	scale(xScale, yScale, zScale, positionX, positionY, positionZ);
+}
+
+void Mesh::scale(float xScale, float yScale, float zScale, float xPivot, float yPivot, float zPivot) {
+	width *= xScale;
+	height *= yScale;
+	depth *= zScale;
 	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(xScale, yScale, zScale));
 	for (auto && vertex : vertices) {
 		vertex = scale * vertex;
@@ -124,5 +131,20 @@ GLuint Mesh::loadMipmapTexture(GLuint texId, const char* fname) {
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	return texture;
+}
+
+void Mesh::assign(Mesh &other) {
+	positionX = other.positionX;
+	positionY = other.positionY;
+	positionZ = other.positionZ;
+	width = other.width;
+	height = other.height;
+	depth = other.depth;
+	VBO = other.VBO;
+	VAO = other.VAO;
+	EBO = other.EBO;
+	vertices = other.vertices;
+	colors = other.colors;
+	indices = other.indices;
 }
 

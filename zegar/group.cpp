@@ -38,3 +38,21 @@ void Group::draw() {
 void Group::add(Node *object) {
 	objects.push_back(object);
 }
+
+void Group::scale(float xScale, float yScale, float zScale) {
+	width *= xScale;
+	height *= yScale;
+	depth *= zScale;
+	for (auto object : objects) {
+		(*object).scale(xScale, yScale, zScale, positionX, positionY, positionZ);
+	}
+}
+
+void Group::scale(float xScale, float yScale, float zScale, float xPivot, float yPivot, float zPivot) {
+	width *= xScale;
+	height *= yScale;
+	depth *= zScale;
+	for (auto object : objects) {
+		(*object).scale(xScale, yScale, zScale, xPivot, yPivot, zPivot);
+	}
+}
