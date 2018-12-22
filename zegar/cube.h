@@ -7,5 +7,7 @@ private:
 	void genIndices();
 public:
 	Cube(float, float, float);
+	Cube();
 	~Cube();
+	Cube& operator=(Cube other);
 };
