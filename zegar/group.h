@@ -10,6 +10,8 @@ public:
 	void move(float, float, float);
 	void rotate(float, float, float);
 	void rotate(float, float, float, float, float, float);
+	void scale(float, float, float);
+	void scale(float, float, float, float, float, float);
 	void draw();
 	void add(Node *);
 	template<typename T>

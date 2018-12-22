@@ -10,7 +10,6 @@
 
 class Mesh : public Node {
 protected:
-	void scale(float, float, float);
 	virtual void genVertices() = 0;
 	virtual void genIndices() = 0;
 	GLuint VBO, EBO, VAO;
@@ -20,9 +19,12 @@ protected:
 	std::vector<glm::vec4> normals; //to be used later
 	std::vector<GLuint> indices;
 	GLuint texture; //to be used later
+	void assign(Mesh&);
 public:
 	Mesh();
 	~Mesh();
+	void scale(float, float, float);
+	void scale(float, float, float, float, float, float);
 	void draw();
 	void setColor(float, float, float);
 	void move(float, float, float);
