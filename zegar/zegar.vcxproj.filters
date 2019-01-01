@@ -39,6 +39,9 @@
     <ClCompile Include="cog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="clove.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="zegar.frag" />
@@ -64,6 +67,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clove.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

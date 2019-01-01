@@ -3,13 +3,14 @@
 #include "group.h"
 #include "ring.h"
 #include "cube.h"
+#include "clove.h"
 
 class Cog : public Group {
 private:
 	Ring *ringOuter;
 	Ring *ringInner;
 	Cube arms[4];
-	std::vector<Cube *> teeth;
+	std::vector<Clove *> teeth;
 	float radius;
 	float angularSpeed;
 public:

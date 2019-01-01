@@ -86,6 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="clove.cpp" />
     <ClCompile Include="cog.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="group.cpp" />
@@ -100,6 +101,7 @@
     <None Include="zegar.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clove.h" />
     <ClInclude Include="cog.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="group.h" />

@@ -16,11 +16,11 @@ Cog::Cog(int teethNumber, float size) {
 	addAll(ringOuter, ringInner, &arms[0], &arms[1], &arms[2], &arms[3]);
 	float ratio = float(teethNumber) / 24.0f;
 	for (int i = 0; i < teethNumber; i++) {
-		Cube *cube2 = new Cube(0.1f / ratio, 0.29f, 0.1f / ratio);
-		cube2->move(0.0f, 0.0f, 0.75f + 0.05f / ratio);
-		cube2->rotate(0.0f, 360.0f / float(teethNumber) * i, 0.0f, 0.0f, 0.0f, 0.0f);
-		add(cube2);
-		teeth.push_back(cube2);
+		Clove *clove2 = new Clove(0.1f / ratio, 0.29f, 0.1f / ratio);
+		clove2->move(0.0f, 0.0f, 0.75f + 0.05f / ratio);
+		clove2->rotate(0.0f, 360.0f / float(teethNumber) * i, 0.0f, 0.0f, 0.0f, 0.0f);
+		add(clove2);
+		teeth.push_back(clove2);
 	}
 	angularSpeed = 0.0f;
 	scale(ratio, 1.0f, ratio);
