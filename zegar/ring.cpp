@@ -139,6 +139,7 @@ Ring::Ring(float innerRadius, float outerRadius, float height) {
 	genIndices();
 	for (auto i = 0; i < vertices.size(); ++i) {
 		colors.push_back(glm::vec3(0.5f, 0.5f, 0.5f));
+		textures.push_back(glm::vec2(-0.1f, -0.1f));
 	}
 }
 

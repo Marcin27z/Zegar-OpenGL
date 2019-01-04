@@ -1,9 +1,9 @@
 #include "cog.h"
 
 Cog::Cog(int teethNumber, float size) {
-	ringOuter = new Ring (0.5f, 0.75f, 0.3f);
+	ringOuter = new Ring(0.5f, 0.75f, 0.3f);
 	ringOuter->rotate(90.0f, 0.0f, 0.0f);
-	ringInner = new Ring (0.1f, 0.25f, 0.3f);
+	ringInner = new Ring(0.1f, 0.25f, 0.3f);
 	ringInner->rotate(90.0f, 0.0f, 0.0f);
 	arms[0] = Cube(0.4f, 0.25f, 0.25f);
 	arms[1] = Cube(0.4f, 0.25f, 0.25f);
@@ -16,11 +16,11 @@ Cog::Cog(int teethNumber, float size) {
 	addAll(ringOuter, ringInner, &arms[0], &arms[1], &arms[2], &arms[3]);
 	float ratio = float(teethNumber) / 24.0f;
 	for (int i = 0; i < teethNumber; i++) {
-		Clove *clove2 = new Clove(0.1f / ratio, 0.29f, 0.1f / ratio);
-		clove2->move(0.0f, 0.0f, 0.75f + 0.05f / ratio);
-		clove2->rotate(0.0f, 360.0f / float(teethNumber) * i, 0.0f, 0.0f, 0.0f, 0.0f);
-		add(clove2);
-		teeth.push_back(clove2);
+		Clove *cube2 = new Clove(0.1f / ratio, 0.29f, 0.1f / ratio);
+		cube2->move(0.0f, 0.0f, 0.75f + 0.05f / ratio);
+		cube2->rotate(0.0f, 360.0f / float(teethNumber) * i, 0.0f, 0.0f, 0.0f, 0.0f);
+		add(cube2);
+		teeth.push_back(cube2);
 	}
 	angularSpeed = 0.0f;
 	scale(ratio, 1.0f, ratio);

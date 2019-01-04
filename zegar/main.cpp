@@ -120,11 +120,17 @@ int main() {
 			GLuint projectionLoc = glGetUniformLocation(theProgram.get_programID(), "projection");
 			GLuint viewLoc = glGetUniformLocation(theProgram.get_programID(), "view");
 			GLuint transformLoc = glGetUniformLocation(theProgram.get_programID(), "transform");
+			GLuint lightLoc = glGetUniformLocation(theProgram.get_programID(), "lightPos");
+			GLuint lightColorLoc = glGetUniformLocation(theProgram.get_programID(), "lightColor");
 			transform = viewX * viewY;
 			view = glm::translate(view, glm::vec3(0.0f, 0.0f, zoom));
 			glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 			glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+			glm::vec3 lightPos(0.0f, 0.0f, 15.0f);
+			glUniform3fv(lightLoc, 1, glm::value_ptr(lightPos));
+			glm::vec3 lightColor(1.0f, 1.0f, 1.0f); // white
+			glUniform3fv(lightColorLoc, 1, glm::value_ptr(lightColor));
 
 			theProgram.Use();
 			cog.draw(deltaTime);

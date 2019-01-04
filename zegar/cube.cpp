@@ -11,6 +11,9 @@ Cube::Cube(float width, float height, float depth) {
 	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
 	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
 	colors.push_back(glm::vec3(0.0f, 0.0f, 1.0f));
+	for (int i = 0; i < colors.size(); i++) {
+		textures.push_back(glm::vec2(-0.1f, -0.1f));
+	}
 	scale(width, height, depth);
 	this->width = width;
 	this->height = height;
@@ -33,6 +36,14 @@ void Cube::genVertices() {
 	vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
 	vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
 	vertices.push_back(glm::vec4(0.5f, 0.5f, -0.5f, 1.0f));
+	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
 }
 
 void Cube::genIndices() {
