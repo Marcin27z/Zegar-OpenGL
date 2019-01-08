@@ -1,6 +1,6 @@
 #pragma once
 #include "mesh.h"
-#include "shprogram.h"
+
 class Roof : public Mesh {
 	virtual void genVertices();
 	virtual void genIndices();
@@ -9,7 +9,5 @@ class Roof : public Mesh {
 public:
 	Roof(float, float, float);
 	~Roof();
-
-	void draw(const ShaderProgram& shader);
 };
 

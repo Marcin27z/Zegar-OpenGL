@@ -1,16 +1,20 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
-#include "shprogram.h"
 #include <GLFW/glfw3.h>
 #include <SOIL.h>
-#include <iostream>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include <iostream>
+
+#include "shprogram.h"
 #include "cube.h"
 #include "group.h"
 #include "ring.h"
 #include "cog.h"
+#include "roof.h"
+#include "tower.h"
 
 using namespace std;
 
@@ -19,6 +23,7 @@ const GLuint WIDTH = 800, HEIGHT = 800;
 static GLfloat cameraRotationAngleX = 0.0f;
 static GLfloat cameraRotationAngleY = 0.0f;
 static GLfloat zoom = -3.0f;
+static GLint showLight = 1;
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode) {
 	cout << key << endl;
@@ -32,6 +37,9 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 		cameraRotationAngleY -= 1.0f;
 	if (key == GLFW_KEY_DOWN && action == GLFW_REPEAT)
 		cameraRotationAngleY += 1.0f;
+
+	if (key == GLFW_KEY_L && action == GLFW_PRESS)
+		showLight = !showLight;
 }
 
 double mouseOldPosX, mouseOldPosY;
@@ -86,10 +94,15 @@ int main() {
 		// Build, compile and link shader program
 		ShaderProgram theProgram("zegar.vert", "zegar.frag");
 
-		Group group;
+		Group gears;
 		Cog cog(36, 1.0f);
 		Cog cog2(12, 1.0f);
 		Cog cog3(24, 1.0f);
+
+		gears.add(&cog);
+		gears.add(&cog2);
+		gears.add(&cog3);
+
 		cog.setAngularSpeed(20.0f);
 		cog2.synchronizeSpeed(cog);
 		cog3.synchronizeSpeed(cog);
@@ -117,11 +130,13 @@ int main() {
 			projection = glm::perspective(glm::radians(45.0f), GLfloat(WIDTH) / GLfloat(HEIGHT), 0.1f, 100.0f);
 			viewX = glm::rotate(viewX, -glm::radians(cameraRotationAngleX), glm::vec3(0.0, 1.0, 0.0));
 			viewY = glm::rotate(viewY, -glm::radians(cameraRotationAngleY), glm::vec3(1.0, 0.0, 0.0));
+
 			GLuint projectionLoc = glGetUniformLocation(theProgram.get_programID(), "projection");
 			GLuint viewLoc = glGetUniformLocation(theProgram.get_programID(), "view");
 			GLuint transformLoc = glGetUniformLocation(theProgram.get_programID(), "transform");
 			GLuint lightLoc = glGetUniformLocation(theProgram.get_programID(), "lightPos");
 			GLuint lightColorLoc = glGetUniformLocation(theProgram.get_programID(), "lightColor");
+
 			transform = viewX * viewY;
 			view = glm::translate(view, glm::vec3(0.0f, 0.0f, zoom));
 			glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
@@ -131,11 +146,16 @@ int main() {
 			glUniform3fv(lightLoc, 1, glm::value_ptr(lightPos));
 			glm::vec3 lightColor(1.0f, 1.0f, 1.0f); // white
 			glUniform3fv(lightColorLoc, 1, glm::value_ptr(lightColor));
+			
+			glUniform1i(glGetUniformLocation(theProgram.get_programID(), "Texture0"), 0);
+			glUniform1i(glGetUniformLocation(theProgram.get_programID(), "showLight"), showLight);
 
 			theProgram.Use();
+
 			cog.draw(deltaTime);
 			cog2.draw(deltaTime);
 			cog3.draw(deltaTime);
+
 			// Swap the screen buffers
 			glfwSwapBuffers(window);
 		}

@@ -8,7 +8,6 @@ class Tower : public Mesh
 	void genNormals();
 	void genTextures();
 public:
-	void draw(const ShaderProgram&);
 	Tower(float, float, float);
 	~Tower();
 };
