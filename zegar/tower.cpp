@@ -54,48 +54,65 @@ void Tower::genVertices()
 	// L (back)
 	vertices.push_back(glm::vec4(-1.0f, -1.0f, 1.0f, 1.0f));   // 33
 	vertices.push_back(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));     // 34
-	vertices.push_back(glm::vec4(1.0f, -1.0f, 1.0f, 1.0f));    // 35
+	vertices.push_back(glm::vec4(1.0f, -1.0f, 1.0f, 1.0f));    // 35	
 }
 
 void Tower::genTextures()
 {
 	// A (bottom)
-	textures.push_back(glm::vec2(0.2500f, 0.3333f));
-	textures.push_back(glm::vec2(0.2500f, 0.6667f));
-	textures.push_back(glm::vec2(0.5000f, 0.6667f));
+	textures.push_back(glm::vec2(0.2500f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(0.2500f, 2.0f/3.0f));
+	textures.push_back(glm::vec2(0.5000f, 2.0f/3.0f));
 	// B (bottom)
-	textures.push_back(glm::vec2(0.2500f, 0.3333f));
-	textures.push_back(glm::vec2(0.5000f, 0.6667f));
-	textures.push_back(glm::vec2(0.5000f, 0.3333f));
+	textures.push_back(glm::vec2(0.2500f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(0.5000f, 2.0f/3.0f));
+	textures.push_back(glm::vec2(0.5000f, 1.0f/3.0f));
 
 	// C (top)
-	
+	textures.push_back(glm::vec2(1.0000f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(1.0000f, 2.0f/3.0f));
+	textures.push_back(glm::vec2(0.7500f, 1.0f/3.0f));
 	// D (top)
-	
+	textures.push_back(glm::vec2(0.7500f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(1.0000f, 2.0f/3.0f));
+	textures.push_back(glm::vec2(0.7500f, 2.0f/3.0f));
 
 	// E (left)
-	
+	textures.push_back(glm::vec2(0.2500f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(0.0000f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(0.2500f, 2.0f/3.0f));
 	// F (left)
-	
+	textures.push_back(glm::vec2(0.0000f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(0.0000f, 2.0f/3.0f));
+	textures.push_back(glm::vec2(0.2500f, 2.0f/3.0f));
 
 	// G (right)
-	
+	textures.push_back(glm::vec2(0.5000f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(0.7500f, 2.0f/3.0f));
+	textures.push_back(glm::vec2(0.5000f, 2.0f/3.0f));
 	// H (right)
-	
+	textures.push_back(glm::vec2(0.5000f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(0.7500f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(0.7500f, 2.0f/3.0f));
 
 	// I (front)
-	
+	textures.push_back(glm::vec2(0.2500f, 1.0f/3.0f));
+	textures.push_back(glm::vec2(0.2500f, 0.0000f));
+	textures.push_back(glm::vec2(0.5000f, 1.0f/3.0f));
 	// J (front)
-	
+	textures.push_back(glm::vec2(0.2500f, 0.0000f));
+	textures.push_back(glm::vec2(0.5000f, 0.0000f));
+	textures.push_back(glm::vec2(0.5000f, 1.0f/3.0f));
 
 	// K (back)
-	
+	textures.push_back(glm::vec2(0.2500f, 2.0f/3.0f));
+	textures.push_back(glm::vec2(0.2500f, 1.0000f));
+	textures.push_back(glm::vec2(0.5000f, 1.0000f));
 	// L (back)
-	for (int i = 0; textures.size() < vertices.size(); i++)
-	{
-		textures.push_back(glm::vec2(0, 0));
-		//std::cout << ">" << textures.size() << std::endl;
-	}
+	textures.push_back(glm::vec2(0.2500f, 2.0f/3.0f));
+	textures.push_back(glm::vec2(0.5000f, 1.0000f));
+	textures.push_back(glm::vec2(0.5000f, 2.0f/3.0f));
+
 }
 
 void Tower::genIndices()
@@ -109,8 +126,6 @@ void Tower::genNormals()
 	
 }
 
-
-
 Tower::Tower(float width = 1.0f, float height = 1.0f, float depth = 1.0f)
 {
 	genVertices();
@@ -118,14 +133,25 @@ Tower::Tower(float width = 1.0f, float height = 1.0f, float depth = 1.0f)
 	genTextures();
 	genNormals();
 	for (int i = 0; i < vertices.size(); i++)
-		colors.push_back(glm::vec3(0, 0, 1.0));
+		colors.push_back(glm::vec3(0.2, 0, 0));
 	scale(width, height, depth);
-	texture = loadMipmapTexture(GL_TEXTURE0, "Textures\\tower_r.png");
+	texture = loadMipmapTexture(GL_TEXTURE0, "Textures\\tower.png");
 }
-
 
 Tower::~Tower()
 {
 }
+
+
+/*
+
+Group tower;
+Roof roof(0.50, 0.50, 0.50);         roof.move(0, 0, 1.25);       tower.add(&roof);
+Tower towerLevel0(0.25, 0.25, 0.25);                              tower.add(&towerLevel0);
+Tower towerLevel1(0.25, 0.25, 0.25); towerLevel1.move(0, 0, 0.5); tower.add(&towerLevel1);
+Tower towerLevel2(0.25, 0.25, 0.25); towerLevel2.move(0, 0, 1.0); tower.add(&towerLevel2);
+tower.move(0, 0.3, 0);
+
+*/
 
 
