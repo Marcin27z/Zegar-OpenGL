@@ -20,9 +20,9 @@ using namespace std;
 
 const GLuint WIDTH = 800, HEIGHT = 800;
 
-static GLfloat cameraRotationAngleX = 0.0f;
-static GLfloat cameraRotationAngleY = 0.0f;
-static GLfloat zoom = -3.0f;
+static GLfloat cameraRotationAngleX = 5.0f;
+static GLfloat cameraRotationAngleY = 45.0f;
+static GLfloat zoom = -5.0f;
 static GLint showLight = 1;
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode) {
@@ -146,10 +146,13 @@ int main() {
 			glUniform3fv(lightLoc, 1, glm::value_ptr(lightPos));
 			glm::vec3 lightColor(1.0f, 1.0f, 1.0f); // white
 			glUniform3fv(lightColorLoc, 1, glm::value_ptr(lightColor));
-			
 			glUniform1i(glGetUniformLocation(theProgram.get_programID(), "Texture0"), 0);
-			glUniform1i(glGetUniformLocation(theProgram.get_programID(), "showLight"), showLight);
 
+			// funkcja zmieniajaca stan rysowania oswietlenia, przyjmuje wartosc 0/1
+			auto setLight = [&](GLint value) { 
+				glUniform1i(glGetUniformLocation(theProgram.get_programID(), "showLight"), value);
+			};
+			setLight(showLight); // ustawiamy wartosc glowna na poczatku petli
 			theProgram.Use();
 
 			cog.draw(deltaTime);

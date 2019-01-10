@@ -70,6 +70,11 @@ void Mesh::rotate(float xAngle, float yAngle, float zAngle, float xPivot, float 
 	}
 }
 
+void Mesh::loadTexture(const char * name)
+{
+	texture = loadMipmapTexture(GL_TEXTURE0, name);
+}
+
 GLuint Mesh::loadMipmapTexture(GLuint texId, const char* fname) {
 	int width, height;
 	unsigned char* image = SOIL_load_image(fname, &width, &height, 0, SOIL_LOAD_RGB);

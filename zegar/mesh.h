@@ -30,5 +30,6 @@ public:
 	void move(float, float, float);
 	void rotate(float, float, float);
 	void rotate(float, float, float, float, float, float);
+	void loadTexture(const char* name);
 	GLuint loadMipmapTexture(GLuint texId, const char* fname); //to be used later
 };

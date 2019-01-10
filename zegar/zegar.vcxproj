@@ -99,7 +99,6 @@
     <ClCompile Include="tower.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="roof.frag" />
     <None Include="zegar.frag" />
     <None Include="zegar.vert" />
   </ItemGroup>
