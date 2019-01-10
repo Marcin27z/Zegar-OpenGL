@@ -15,10 +15,10 @@ protected:
 	GLuint VBO, EBO, VAO;
 	std::vector<glm::vec4> vertices;
 	std::vector<glm::vec3> colors;
-	std::vector<glm::vec2> textures; //to be used later
-	std::vector<glm::vec4> normals; //to be used later
+	std::vector<glm::vec2> textures;
+	std::vector<glm::vec4> normals;
 	std::vector<GLuint> indices;
-	GLuint texture; //to be used later
+	GLuint texture;
 	void assign(Mesh&);
 public:
 	Mesh();
@@ -30,6 +30,7 @@ public:
 	void move(float, float, float);
 	void rotate(float, float, float);
 	void rotate(float, float, float, float, float, float);
+	void loadTexture(const char* name);
 	void setNormals();
-	GLuint loadMipmapTexture(GLuint texId, const char* fname); //to be used later
+	GLuint loadMipmapTexture(GLuint texId, const char* fname);
 };
