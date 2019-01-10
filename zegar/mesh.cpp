@@ -129,7 +129,6 @@ void Mesh::rotate(float xAngle, float yAngle, float zAngle, float xPivot, float 
 	for (auto && normal : normals) {
 		normal = rotate * normal;
 	}
-	// TODO: dodaæ rotowanie tekstur ?
 }
 
 GLuint Mesh::loadMipmapTexture(GLuint texId, const char* fname) {
@@ -148,6 +147,31 @@ GLuint Mesh::loadMipmapTexture(GLuint texId, const char* fname) {
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	return texture;
+}
+
+void Mesh::setNormals() {
+	for (int i = 0; i < vertices.size(); i++) {
+		normals.push_back(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+	}
+
+	for (int i = 0; i < indices.size() / 3; i++) {
+		int a = indices[i * 3];
+		int b = indices[i * 3 + 1];
+		int c = indices[i * 3 + 2];
+
+		glm::vec3 vecA = glm::vec3(vertices[a].x, vertices[a].y, vertices[a].z);
+		glm::vec3 vecB = glm::vec3(vertices[b].x, vertices[b].y, vertices[b].z);
+		glm::vec3 vecC = glm::vec3(vertices[c].x, vertices[c].y, vertices[c].z);
+		glm::vec3 faceVector = glm::cross(vecC - vecA, vecB - vecA);
+
+		normals[a] = glm::vec4(faceVector, 1.0f);
+		vertices[b] = glm::vec4(faceVector, 1.0f);
+		vertices[c] = glm::vec4(faceVector, 1.0f);
+	}
+
+	for (int i = 0; i < vertices.size(); i++) {
+		normals[i] = glm::normalize(vertices[i]);
+	}
 }
 
 void Mesh::assign(Mesh &other) {

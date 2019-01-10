@@ -36,14 +36,8 @@ void Cube::genVertices() {
 	vertices.push_back(glm::vec4(-0.5f, -0.5f, -0.5f, 1.0f));
 	vertices.push_back(glm::vec4(0.5f, -0.5f, -0.5f, 1.0f));
 	vertices.push_back(glm::vec4(0.5f, 0.5f, -0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
+	
+	setNormals();
 }
 
 void Cube::genIndices() {
@@ -52,14 +46,14 @@ void Cube::genIndices() {
 		0, 3, 4,
 		0, 4, 1,
 		7, 4, 3,
-		7, 4, 6,
+		7, 6, 4,
 		7, 3, 6,
-		5, 4, 1,
+		5, 1, 4,
 		5, 6, 1,
 		5, 4, 6,
-		2, 6, 1,
+		2, 1, 6,
 		2, 3, 1,
-		2, 3, 6
+		2, 6, 3
 	};
 }
 
