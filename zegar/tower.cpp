@@ -2,6 +2,7 @@
 
 void Tower::genVertices()
 {
+
 	if (faces & Faces::BOTTOM) {
 		// A (bottom)
 		vertices.push_back(glm::vec4(-1.0f, -1.0f, -1.0f, 1.0f));  // 0
@@ -68,6 +69,7 @@ void Tower::genVertices()
 		vertices.push_back(glm::vec4(1.0f, -1.0f, 1.0f, 1.0f));    // 35	
 	}
 
+	setNormals();
 }
 
 void Tower::genTextures()
