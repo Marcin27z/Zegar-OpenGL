@@ -7,6 +7,8 @@ void Roof::genVertices()
 	vertices.push_back(glm::vec4(0.5f, 0.5f, 0.0f, 1.0f));
 	vertices.push_back(glm::vec4(-0.5f, 0.5f, 0.0f, 1.0f));
 	vertices.push_back(glm::vec4(0.0f, 0.0f, 0.5f, 1.0f));
+
+	setNormals();
 }
 
 void Roof::genIndices()

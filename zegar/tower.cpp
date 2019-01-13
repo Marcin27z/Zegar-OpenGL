@@ -55,6 +55,8 @@ void Tower::genVertices()
 	vertices.push_back(glm::vec4(-1.0f, -1.0f, 1.0f, 1.0f));   // 33
 	vertices.push_back(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));     // 34
 	vertices.push_back(glm::vec4(1.0f, -1.0f, 1.0f, 1.0f));    // 35	
+
+	setNormals();
 }
 
 void Tower::genTextures()
