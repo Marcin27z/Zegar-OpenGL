@@ -39,16 +39,7 @@ void Clove::genVertices() {
 	vertices.push_back(glm::vec4(0.15f, -0.15f, 0.5f, 1.0f));
 	vertices.push_back(glm::vec4(0.15f, 0.15f, 0.5f, 1.0f));
 
-	// TODO: powyliczaæ i zmieniæ wspó³rzêdne normalnych
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-	normals.push_back(glm::vec4(-0.5f, 0.5f, 0.5f, 1.0f));
-
+	setNormals();
 }
 void Clove::genIndices() {
 	indices = {
