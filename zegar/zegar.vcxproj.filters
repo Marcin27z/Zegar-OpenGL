@@ -42,6 +42,18 @@
     <ClCompile Include="clove.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="roof.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tower.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="coneShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="zegar.frag" />
@@ -70,6 +82,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clove.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="roof.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="coneShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

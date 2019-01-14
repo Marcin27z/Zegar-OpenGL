@@ -16,6 +16,7 @@
 #include "roof.h"
 #include "tower.h"
 #include "face.h""
+#include "cone.h"
 
 using namespace std;
 
@@ -100,6 +101,9 @@ int main() {
 		Cog cog2(12, 1.0f);
 		Cog cog3(24, 1.0f);
 
+		Cone cone1(1, 1.0f, 0);
+		Cone cone2(1, 1.0f, 1);
+
 		gears.add(&cog);
 		gears.add(&cog2);
 		gears.add(&cog3);
@@ -111,6 +115,10 @@ int main() {
 		cog3.rotate(0.0f, 7.5f, 0.0f, 0.0f, 0.0f, 0.0f);
 		cog2.move(cog.getRadius() + cog2.getRadius() + 0.1f, 0.0f, 0.0f);
 		cog3.move(0.0f, 0.0f, cog.getRadius() + cog3.getRadius() + 0.1f);
+		cone1.scale(0.3f, 0.3f, 0.3f);
+		cone2.scale(0.3f, 0.3f, 0.3f);
+		cone1.move(0.5f, -3.0f, 0.0f);
+		cone2.move(-0.5f, -3.0f, 0.0f);
 
 		// main event loop
 		while (!glfwWindowShouldClose(window)) {
@@ -159,6 +167,8 @@ int main() {
 			cog.draw(deltaTime);
 			cog2.draw(deltaTime);
 			cog3.draw(deltaTime);
+			cone1.draw(deltaTime);
+			cone2.draw(deltaTime);
 
 			// Swap the screen buffers
 			glfwSwapBuffers(window);
