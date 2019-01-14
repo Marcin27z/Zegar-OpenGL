@@ -15,6 +15,7 @@
 #include "cog.h"
 #include "roof.h"
 #include "tower.h"
+#include "face.h""
 
 using namespace std;
 
