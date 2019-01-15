@@ -185,6 +185,10 @@ int main() {
 		Tower towerLevel2(2, 2, 2); 
 		towerLevel2.move(0, -8, -2); 
 		tower.add(&towerLevel2);
+
+		Group scene;
+		scene.addAll(&tower, &cog, &cog2, &cog3, &face, &cone1, &cone2, &box);
+		scene.move(0.0f, 0.0f, 2.0f);
 		
 
 		// main event loop
@@ -201,7 +205,7 @@ int main() {
 			// Clear the colorbuffer
 			glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glm::vec3 lightPos(0.0f, 0.0f, 15.0f);
+			glm::vec3 lightPos(10.0f, 10.0f, 100.0f);
 			glm::mat4 viewX, viewY, projection, transform, view;
 			projection = glm::perspective(glm::radians(45.0f), GLfloat(WIDTH) / GLfloat(HEIGHT), 0.1f, 100.0f);
 			viewX = glm::rotate(viewX, -glm::radians(cameraRotationAngleX), glm::vec3(0.0, 1.0, 0.0));
@@ -213,8 +217,7 @@ int main() {
 			GLuint lightLoc = glGetUniformLocation(theProgram.get_programID(), "lightPos");
 			GLuint lightColorLoc = glGetUniformLocation(theProgram.get_programID(), "lightColor");
 
-			transform = viewX * viewY;
-			view = glm::translate(view, glm::vec3(0.0f, 0.0f, zoom));
+			view = glm::translate(view, glm::vec3(0.0f, 0.0f, zoom)) * viewX * viewY;
 			glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 			glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
