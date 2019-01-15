@@ -1,5 +1,5 @@
 #include "face.h"
-
+#include <ctime>
 
 
 Face::Face(float size)
@@ -26,7 +26,7 @@ Face::Face(float size)
 		hourDashes[3]->setColor(0.453f, 0.553f, 0.453f);
 	*/
 	bigRing->setColor(0.829, 0.829, 0.829);
-	centralRing->setColor(0.4, 0.4, 0.4);
+	centralRing->setColor(0.5, 0.5, 0.5);
 	hourHand->setColor(0.4, 0.4, 0.4);
 	minuteHand->setColor(0.3, 0.3, 0.3);
 	secondHand->setColor(0.2, 0.2, 0.2);
@@ -47,6 +47,15 @@ Face::Face(float size)
 	hourDashes[2]->rotate(0.0f, 0.0f, 180.0f, 0.0f, 0.0f, 0.5f);
 	hourDashes[3]->rotate(0.0f, 0.0f, 270.0f, 0.0f, 0.0f, 0.5f);
 
+	time_t theTime = time(NULL);
+	struct tm *aTime = localtime(&theTime);
+	int hour = aTime->tm_hour % 12;
+	int min = aTime->tm_min;
+	int sec = aTime->tm_sec;
+	secondHand->rotate(0.0f, 0.0f, -sec * 6, 0.0f, 0.0f, 0.5f);
+	minuteHand->rotate(0.0f, 0.0f, -min * 6 - sec / 10.0, 0.0f, 0.0f, 0.5f);
+	hourHand->rotate(0.0f, 0.0f, -hour * 30 - min / 60.0 * 30, 0.0f, 0.0f, 0.5f);
+
 	addAll(bigRing, centralRing, hourHand, minuteHand, secondHand, hourDashes[0], hourDashes[1], hourDashes[2], hourDashes[3]);
 	scale(size, size, size);
 }
@@ -63,9 +72,9 @@ void Face::draw()
 
 void Face::tick(float deltaTime)
 {
-	float secondHandTick = 1.0f * deltaTime * 9;
-	float minuteHandTick = 1.0f * deltaTime * 3;
-	float hourHandTick = 1.0f * deltaTime;
+	float secondHandTick = 1.0f * deltaTime * 6;
+	float minuteHandTick = 1.0f * deltaTime / 10.0;
+	float hourHandTick = 1.0f * deltaTime / 600.0;
 
 	secondHand->rotate(0.0f, 0.0f, -secondHandTick, 0.0f, 0.0f, 0.5f);
 	minuteHand->rotate(0.0f, 0.0f, -minuteHandTick, 0.0f, 0.0f, 0.5f);
