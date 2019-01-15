@@ -30,7 +30,7 @@ static glm::vec3 debugMove(0,0,0);
 static bool drawTower = true;
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode) {
-	cout << key << endl;
+	//cout << key << endl;
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	if (key == GLFW_KEY_RIGHT && action == GLFW_REPEAT)
@@ -245,8 +245,6 @@ int main() {
 					debugMove = glm::vec3(0, 0, 0);
 				}
 			};
-
-			std::cout << cameraRotationAngleX << ", " << cameraRotationAngleY << ", " << zoom << std::endl;
 
 			theProgram.Use();
 			setLight(showLight); // light switcher
