@@ -64,6 +64,8 @@ void Ring::genVertices() {
 		normals.push_back(transformedNormalInnerBottom);
 		textures.push_back(glm::vec2(-0.1f, -0.1f));
 	}
+
+	setNormals();
 }
 
 void Ring::genIndices() {
