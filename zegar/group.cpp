@@ -18,12 +18,18 @@ void Group::move(float xMove, float yMove, float zMove) {
 }
 
 void Group::rotate(float xAngle, float yAngle, float zAngle) {
+	angleX += xAngle;
+	angleY += yAngle;
+	angleZ += zAngle;
 	for (auto && object : objects) {
 		(*object).rotate(xAngle, yAngle, zAngle);
 	}
 }
 
-void Group::rotate(float xAngle, float yAngle, float zAngle, float xPivot, float yPivot, float zPivot) {
+void Group::rotate(float xAngle, float yAngle, float zAngle, float xPivot, float yPivot, float zPivot) {	
+	angleX += xAngle;
+	angleY += yAngle;
+	angleZ += zAngle;
 	for (auto && object : objects) {
 		(*object).rotate(xAngle, yAngle, zAngle, xPivot, yPivot, zPivot);
 	}

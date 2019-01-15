@@ -97,9 +97,11 @@ int main() {
 		ShaderProgram theProgram("zegar.vert", "zegar.frag");
 
 		Group gears;
-		Cog cog(36, 1.0f);
-		Cog cog2(12, 1.0f);
-		Cog cog3(24, 1.0f);
+
+		const float cogsScale = 0.7f;
+		Cog cog(36, cogsScale);
+		Cog cog2(12, cogsScale);
+		Cog cog3(24, cogsScale);
 
 		Cone cone1(1, 1.0f, 0);
 		Cone cone2(1, 1.0f, 1);
@@ -113,10 +115,12 @@ int main() {
 		cog.setAngularSpeed(20.0f);
 		cog2.synchronizeSpeed(cog);
 		cog3.synchronizeSpeed(cog);
-		cog2.rotate(0.0f, 15.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-		cog3.rotate(0.0f, 7.5f, 0.0f, 0.0f, 0.0f, 0.0f);
-		cog2.move(cog.getRadius() + cog2.getRadius() + 0.1f, 0.0f, 0.0f);
-		cog3.move(0.0f, 0.0f, cog.getRadius() + cog3.getRadius() + 0.1f);
+		cog.rotate(90.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+		cog2.rotate(90.0f, 15.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+		cog3.rotate(90.0f, 7.5f, 0.0f, 0.0f, 0.0f, 0.0f);
+		cog.move(0.0f, 0.0f, -1.0f);
+		cog2.move(0.0f, cog.getRadius() + cog2.getRadius() + 0.1f * cogsScale, -1.0f);
+		cog3.move(cog.getRadius() + cog3.getRadius() + 0.1f * cogsScale, 0.0f, -1.0f);
 		cone1.scale(0.3f, 0.3f, 0.3f);
 		cone2.scale(0.3f, 0.3f, 0.3f);
 		cone1.move(0.5f, -3.0f, -1.0f);
