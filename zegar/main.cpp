@@ -121,7 +121,7 @@ int main() {
 		Face face(1.5f);
 
 		// box
-		Cube box(2, 2, 0.75);
+		Cube box(3.25, 2, 0.75);
 		box.move(0, 0, -0.5);
 		box.setColor(0, 0, 0);
 
@@ -141,9 +141,9 @@ int main() {
 		cog.rotate(90.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 		cog2.rotate(90.0f, 15.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 		cog3.rotate(90.0f, 7.5f, 0.0f, 0.0f, 0.0f, 0.0f);
-		cog.move(0.0f, 0.0f, -1.0f);
-		cog2.move(0.0f, cog.getRadius() + cog2.getRadius() + 0.1f * cogsScale, -1.0f);
-		cog3.move(cog.getRadius() + cog3.getRadius() + 0.1f * cogsScale, 0.0f, -1.0f);
+		cog.move(0.0f, -0.2f, -1.0f);
+		cog2.move(0.0f, -0.2f + cog.getRadius() + cog2.getRadius() + 0.1f * cogsScale, -1.0f);
+		cog3.move(cog.getRadius() + cog3.getRadius() + 0.1f * cogsScale, -0.2f, -1.0f);
 
 		// oscillators
 		Cone cone1(1, 1.0f, 0);
