@@ -49,7 +49,7 @@ Cone::~Cone() {
 
 void Cone::draw(float deltaTime) {
 	if (bound == 0) {
-		if (moveCounter < 1.0f) {
+		if (moveCounter < 0.6f) {
 			move(0.0f, 1.0f *deltaTime, 0.0f);
 			moveCounter += 1.0f * deltaTime;
 		}
@@ -57,7 +57,7 @@ void Cone::draw(float deltaTime) {
 			bound = 1; // reached upper bound
 	}
 	if (bound == 1) {
-		if (moveCounter > -1.0f) {
+		if (moveCounter > -0.6f) {
 			move(0.0f, -1.0f *deltaTime, 0.0f);
 			moveCounter -= 1.0f * deltaTime;
 		}
