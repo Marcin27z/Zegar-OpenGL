@@ -40,3 +40,13 @@ Planowane etapy
 5. Animacje  
 6. Światło
 
+Prezentacja
+----------
+[
+![Alt text](/zegar/screens/tower.PNG?raw=true "")
+![Alt text](/zegar/screens/tower_light.PNG?raw=true "")
+![Alt text](/zegar/screens/clock_face.PNG?raw=true "")
+![Alt text](/zegar/screens/mechanism_front.PNG?raw=true "")
+![Alt text](/zegar/screens/mechanism_back.PNG?raw=true "")
+![Alt text](/zegar/screens/gears.PNG?raw=true "")
+](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
